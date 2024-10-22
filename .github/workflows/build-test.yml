@@ -2,6 +2,13 @@ name: Build and Test
 
 on:
   push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+    contents: read
+    packages: write
 
 jobs:
   test:
@@ -15,9 +22,10 @@ jobs:
         run: |
           docker build -f aica-package.toml --target test .
 
-  build:
+  build-push:
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
-    name: Build
+    name: Build and push
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -36,6 +44,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ghcr.io/${{ github.repository }}/template-component-package:latest
+          tags: ghcr.io/${{ github.repository_owner }}/template-component-package:latest
           context: .
           file: aica-package.toml
