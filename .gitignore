@@ -2,3 +2,4 @@
 .DS_Store
 *.*CommandMarker
 compile_commands.json
+/build
