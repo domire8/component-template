@@ -101,12 +101,14 @@ echo "  - ${NEW_NAME}"
 echo "  - ${NEW_NAME//_/-}"
 echo "in the following search paths:"
 echo "  - ${SCRIPT_DIR}/.devcontainer.json"
+echo "  - ${SCRIPT_DIR}/.vscode/settings.json"
 echo "  - ${SCRIPT_DIR}/.github/workflows/build-test.yml"
 echo "  - ${SCRIPT_DIR}/aica-package.toml"
 echo "  - ${SCRIPT_DIR}/source/**"
 echo
 
 replace_text_in_file "${SCRIPT_DIR}/.devcontainer.json"
+replace_text_in_file "${SCRIPT_DIR}/.vscode/settings.json"
 replace_text_in_file "${SCRIPT_DIR}/.github/workflows/build-test.yml"
 replace_text_in_file "${SCRIPT_DIR}/aica-package.toml"
 
