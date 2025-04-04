@@ -1,4 +1,5 @@
 {
+    "name": "template-component-package",
     "containerUser": "ros2",
     "initializeCommand": [
         "docker",
@@ -13,12 +14,17 @@
     "workspaceMount": "source=${localWorkspaceFolder},target=/home/ros2/.devcontainer,type=bind,consistency=cached",
     "workspaceFolder": "/home/ros2/.devcontainer",
     "postStartCommand": "rm -r /home/ros2/ws/src/template_component_package && ln -s /home/ros2/.devcontainer/source/template_component_package /home/ros2/ws/src/template_component_package",
+    "postCreateCommand": "/usr/local/bin/generate_compile_commands --packages template_component_package --cmake-args BUILD_TESTING=ON --timeout 60",
     "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-vscode.cpptools-extension-pack",
-                "ms-python.python"
-            ]
-        }
+      "vscode": {
+        "extensions": [
+          "ms-vscode.cpptools-extension-pack",
+          "ms-python.pylint",
+          "ms-python.autopep8",
+          "ms-python.isort",
+          "llvm-vs-code-extensions.vscode-clangd",
+          "xaver.clang-format"
+        ]
+      }
     }
 }
